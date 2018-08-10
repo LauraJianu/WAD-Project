@@ -1,0 +1,21 @@
+<h1 class="current-category"><%= params[:category] %></h1>
+
+<% if @albums.count == 0 %>
+
+	<h1>There are currently no albums in this category!</h1>
+
+<% else %>
+
+
+
+
+<% @albums.each do |album| %>
+<h2><%= link_to album.title, album_path(album) %></h2>
+
+
+ <% end %>
+
+
+
+
+<% end %>

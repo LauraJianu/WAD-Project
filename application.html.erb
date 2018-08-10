@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MyApp</title>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<link rel='stylesheet' href='footer.css'/>
+<link rel='stylesheet' href='application.css.scss'/>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="footer, links, icons" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+<footer class="footer-distributed">
+<div class="footer-right">
+
+<a href="#"><i class="fa fa-facebook"></i></a>
+<a href="#"><i class="fa fa-twitter"></i></a>
+<a href="#"><i class="fa fa-pinterest"></i></a>
+<a href="#"><i class="fa fa-youtube"></i></a>
+</div>
+
+<div class="footer-left">
+<p>Mooz me up! &copy; 2017</p>
+</div>
+
+</footer>
+
+
+<style>
+body {
+  background: url("file:///C:/Users/User/Desktop/webApp/myApp/app/views/layouts/line.jpg");
+}
+
+</style>
+
+
+<%= csrf_meta_tags %>
+</head>
+<body>
+
+
+
+<nav class="navbar navbar-default">
+   <div class="container">
+
+ 			<div class="navbar-header">
+ 				<%= link_to "Mooz me up!", root_path, class: "navbar-brand" %>
+ </div>
+
+
+
+ <ul class="nav navbar-nav">
+				<li><%= link_to "Sign Up", new_user_registration_path %></li>
+				<% if user_signed_in? %>
+					<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+				<% else %>
+					<li><%= link_to "Log In", new_user_session_path %></li>
+				<% end %>
+</ul>
+
+<ul class="nav navbar-nav navbar-right">
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<% Category.all.each do |category| %>
+							<li class="<%= 'active' if params[:category] == category.name %>">
+								<%= link_to category.name, albums_path(category: category.name), class: "link" %>
+							</li>
+						<% end %>
+					</ul>
+</li>
+
+<marquee behavior="alternate">
+
+<%= image_tag("logos/q.jpg") %>
+<%= image_tag("logos/dr.jpg") %>
+<%= image_tag("logos/am.png") %>
+<%= image_tag("logos/rw.jpg") %>
+<%= image_tag("logos/lk.jpg") %>
+<%= image_tag("logos/ks.jpg") %>
+<%= image_tag("logos/pf.jpg") %>
+<%= image_tag("logos/pc.jpg") %>
+<%= image_tag("logos/mj.jpg") %>
+<%= image_tag("logos/tp.png") %>
+<%= image_tag("logos/sf.jpg") %>
+<%= image_tag("logos/db.jpg") %>
+<%= image_tag("logos/nh.jpg") %>
+<%= image_tag("logos/ca.jpg") %>
+
+</marquee>
+
+
+<div>
+<ul class="nav navbar-nav navbar-right">
+  <% if user_signed_in? %>
+     <li><%= link_to "Add Album", new_album_path %></li>
+<% end %>
+</ul>
+ </div>
+</nav>
+
+
+
+
+
+
+
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<%= yield %>
+
+<marquee behavior="alternate">
+
+<%= image_tag("logos/c.jpg") %>
+<%= image_tag("logos/d.jpg") %>
+<%= image_tag("logos/h.jpg") %>
+<%= image_tag("logos/i.jpg") %>
+<%= image_tag("logos/k.jpg") %>
+<%= image_tag("logos/l.jpg") %>
+<%= image_tag("logos/pink.jpg") %>
+<%= image_tag("logos/queen.jpg") %>
+<%= image_tag("logos/s.jpg") %>
+<%= image_tag("logos/vinyl.jpg") %>
+<%= image_tag("logos/w.jpg") %>
+<%= image_tag("logos/e.jpg") %>
+
+</marquee>
+
+
+
+
+
+
+
+</body>
+</html>

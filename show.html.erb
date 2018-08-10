@@ -1,0 +1,61 @@
+<div class="col-md-7">
+
+<h2><%= @album.title %></h2>
+<h3><%= @album.artist %></h3>
+<h4 class="avg-rating">Average Rating</h4>
+<div class="average-review-rating" data-score=<%= @average_review %>></div>
+<p><%= @album.description %></p>
+
+</div>
+
+<%= link_to "Back", root_path(@album) %>
+
+<% if user_signed_in? %>
+
+<% if @album.user_id == current_user.id   %>
+ <%= link_to "Edit", edit_album_path(@album) %>
+ <%= link_to "Delete", album_path(@album), method: :delete, data: {confirm: "Are you sure you want to delete it?" } %>
+
+ <% end %>
+
+ <% end %>
+
+ <div class="row">
+
+	<div class="col-md-5">
+
+		<div class="reviews">
+
+			<!-- the reviews & ratings -->
+			<h1>Reviews</h1>
+			<%= render @album.reviews %>
+
+			<div>
+				<%= link_to "Add Review", new_album_review_path(@album), class: "btn-custom" %>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<script>
+	$('.review-rating').raty({
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		},
+		path: '/assets/'
+	});
+</script>
+
+<script>
+	$('.average-review-rating').raty({
+		readOnly: true,
+		path: '/assets/',
+		score: function() {
+			return $(this).attr('data-score')
+		}
+	});
+</script>
